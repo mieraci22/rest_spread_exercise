@@ -1,0 +1,70 @@
+Given:
+function filterOutOdds() {
+  var nums = Array.prototype.slice.call(arguments);
+  return nums.filter(function(num) {
+    return num % 2 === 0
+  });
+}
+
+Refactored:
+const filterOutOdds = (...nums) => nums.filter(num => num % 2 === 0);
+
+
+Original findMin:
+findMin(1,4,12,-3) // -3
+findMin(1,-1) // -1
+findMin(3,1) // 1
+
+New findMin:
+function findMin(...nums) {
+  return Math.min(...nums);
+}
+
+
+original mergeObjects:
+mergeObjects({a:1, b:2}, {c:3, d:4}) // {a:1, b:2, c:3, d:4}
+
+new mergeObjects:
+function mergeObjects(obj1,obj2){
+  return {...obj1, ...obj2};
+}
+
+original doubleAndReturnArgs:
+
+Write a function called doubleAndReturnArgs which accepts an array and a variable number of arguments. The function should return a new array with the original array values and all of additional arguments doubled.
+doubleAndReturnArgs([1,2,3],4,4) // [1,2,3,8,8]
+doubleAndReturnArgs([2],10,4) // [2, 20, 8]
+
+new doubleAndReturnArgs:
+
+function doubleAndReturnArgs(arr, ...args) {
+  const doubledArgs = args.map(arg => arg * 2);
+  return [...arr, ...doubledArgs];
+}
+
+
+new sliceAndDice:
+
+const removeRandom = items => {
+  let idx = Math.floor(Math.random() * items.length);
+  return [...items.slice(0, idx), ...items.slice(idx + 1)];
+};
+
+const extend = (array1, array2) => [...array1, ...array2];
+
+
+const addKeyVal = (obj, key, val) => ({...obj, [key]: val});
+
+
+
+const removeKey = (obj, key) => {
+  const {[key]: omitted, ...rest} = obj;
+  return rest;
+};
+
+
+const combine = (obj1, obj2) => ({...obj1, ...obj2});
+
+
+
+const update = (obj, key, val) => ({...obj, [key]: val});
